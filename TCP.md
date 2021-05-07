@@ -79,4 +79,4 @@ Note left of Active Opener(Client): Connection Close (Modified 3-Way Handshake)
 </br>
 
 1. Client는 Server가 받기를 기대하는(종료 하기 전 마지막 패킷의 Acknowledge Number)를 Sequence Number로 설정하고 (그림의 K), 마지막 패킷의 Sequence Number를 Acknowledge Number로 설정하여 (그림의 L) FIN과 바로 전 패킷에 대한 응답으로 ACK를 함께 전송한다.
-
+2. 
