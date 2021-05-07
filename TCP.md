@@ -74,3 +74,6 @@ Note left of Active Opener(Client): Connection Close (Modified 3-Way Handshake)
  http > 8428 [SYN, ACK] Seq=584361652 Ack=343143065 win=8190 ...
  8428 > http [ACK] Seq=343143065 Ack=584361653 win=65536 ...
 ```
+<그림 1>의 Connection close는 통신의 종료 과정으로 `4Way-Handshacking`, `4Release`로도 불린다. 종료는 일반적으로 Client가 시작하는 것이 보통이지만 Server가 종료를 시작 할 수도 있고, 드물지만 동시에 종료하는 경우도 존재한다.
+
+</br>
