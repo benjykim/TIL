@@ -77,3 +77,6 @@ Note left of Active Opener(Client): Connection Close (Modified 3-Way Handshake)
 <그림 1>의 Connection close는 통신의 종료 과정으로 `4Way-Handshacking`, `4Release`로도 불린다. 종료는 일반적으로 Client가 시작하는 것이 보통이지만 Server가 종료를 시작 할 수도 있고, 드물지만 동시에 종료하는 경우도 존재한다.
 
 </br>
+
+1. Client는 Server가 받기를 기대하는(종료 하기 전 마지막 패킷의 Acknowledge Number)를 Sequence Number로 설정하고 (그림의 K), 마지막 패킷의 Sequence Number를 Acknowledge Number로 설정하여 (그림의 L) FIN과 바로 전 패킷에 대한 응답으로 ACK를 함께 전송한다.
+
