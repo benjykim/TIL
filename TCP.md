@@ -64,3 +64,13 @@ Note left of Active Opener(Client): Connection Close (Modified 3-Way Handshake)
 1. Client는 Server로 부터 원하는 서비스(ex. 80 HTTP)의 포트 번호에 Client의 ISN 값을 Sequence Number에 설정하고 SYN 패킷을 보낸다.
 2. Server는 자신의 ISN을 Sequence Number에 설정하여 SYN 패킷과 순서 1에 대한 응답으로 ISN(Client) + 1 값을 Acknowledge Number에 설정하여 전송한다.
 3. Client는 순서 2의 SYN에 대한 응답으로 ISN(Server) + 1 값으로 Acknowledge Number를 설정하여 전송한다. 이 때 Sequence Number의 값은 순서 1의 ISN(Client) + 1 로 설정되는데, 이는 순서 2의 Acknowledge Number와 동일하다.
+
+
+
+ ```
+[3Way-Handshacking Sample] 
+
+ 8428 > http [SYN] Seq=343143064 win=65535 ...
+ http > 8428 [SYN, ACK] Seq=584361652 Ack=343143065 win=8190 ...
+ 8428 > http [ACK] Seq=343143065 Ack=584361653 win=65536 ...
+```
