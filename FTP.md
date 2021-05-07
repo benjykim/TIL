@@ -60,4 +60,4 @@ Passive 모드에서는 앞선 Active 모드에서 사용했던 20번 포트를 
 	* 따라서 INBOUND 모두 허용이 필요하다. 서버 측에서 데이터 채널 포트 범위를 지정하여 특정 범위의 포트만 허용해주면 모든 포트 허용의 문제를 어느 정도 해결할 수 있다.
 
 ---
-* 출처: https://madplay.github.io/post/ftp-active-passive
+* 출처: https://madplay.github.io/post/ftp-active-passive 
