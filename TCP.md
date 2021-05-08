@@ -52,7 +52,6 @@ TCP 연결은 두 개의 IP와 두 개의 포트 번호를 통해 이루어진�
 3. Client는 순서 2의 SYN에 대한 응답으로 ISN(Server) + 1 값으로 Acknowledge Number를 설정하여 전송한다. 이 때 Sequence Number의 값은 순서 1의 ISN(Client) + 1 로 설정되는데, 이는 순서 2의 Acknowledge Number와 동일하다.
 
 
-
  ```
 [3Way-Handshacking Sample] 
 
@@ -60,6 +59,7 @@ TCP 연결은 두 개의 IP와 두 개의 포트 번호를 통해 이루어진�
  http > 8428 [SYN, ACK] Seq=584361652 Ack=343143065 win=8190 ...
  8428 > http [ACK] Seq=343143065 Ack=584361653 win=65536 ...
 ```
+
 <그림 1>의 Connection close는 통신의 종료 과정으로 `4Way-Handshacking`, `4Release`로도 불린다. 종료는 일반적으로 Client가 시작하는 것이 보통이지만 Server가 종료를 시작 할 수도 있고, 드물지만 동시에 종료하는 경우도 존재한다.
 1. Client는 Server가 받기를 기대하는(종료 하기 전 마지막 패킷의 Acknowledge Number)를 Sequence Number로 설정하고 (그림의 K), 마지막 패킷의 Sequence Number를 Acknowledge Number로 설정하여 (그림의 L) FIN과 바로 전 패킷에 대한 응답으로 ACK를 함께 전송한다. 
 2. Server는 Client가 보낸 FIN에 응답하기 위해 K + 1 값을 Acknowledge Number로 설정하고 ACK 패킷을 전송한다.
@@ -79,30 +79,7 @@ TCP 연결은 두 개의 IP와 두 개의 포트 번호를 통해 이루어진�
 
 ### 3Way-Handshacking과 4 Release의 상태 변화 정리
 
-```mermaid
-sequenceDiagram
-
-Note left of Active Opener(Client): SYN_SENT(Active Open)
-Active Opener(Client)->> Passive Opener(Server): SYN K
-Note right of Passive Opener(Server): SYN_RCVD
-Passive Opener(Server)->> Active Opener(Client): SYN L, ACK K + 1
-Note left of Active Opener(Client): ESTABLISHED
-Active Opener(Client)->> Passive Opener(Server): ACK L + 1
-Note right of Passive Opener(Server): ESTABLISHED
-Active Opener(Client) -->> Passive Opener(Server): [Data Transfer Proceeds in ESTABLISHED State]
-Passive Opener(Server)-->> Active Opener(Client): [Data Transfer Proceeds in ESTABLISHED State]
-Note left of Active Opener(Client): FIN_WAIT_1(Active Close)
-Active Opener(Client)->> Passive Opener(Server): FIN M
-Note right of Passive Opener(Server): CLOSE_WAIT(Passive Close)
-Passive Opener(Server)->> Active Opener(Client): ACK M + 1
-Note left of Active Opener(Client): FIN_WAIT_2
-Note right of Passive Opener(Server): LAST_ACK
-Passive Opener(Server)->> Active Opener(Client): FIN N
-Note left of Active Opener(Client): TIME_WAIT(2MSL Timer)
-Active Opener(Client)->> Passive Opener(Server): ACK N + 1
-Note left of Active Opener(Client): CLOSED
-Note right of Passive Opener(Server): CLOSED
-```
+![image](https://user-images.githubusercontent.com/23527702/117527334-29a67800-b006-11eb-8e37-19f98d0773ad.png)
 
 ---
 
