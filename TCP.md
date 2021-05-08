@@ -40,22 +40,8 @@ TCP 연결은 두 개의 IP와 두 개의 포트 번호를 통해 이루어진�
 </br>
 
 * <그림 1> 연결 준비 및 종료 절차
-```mermaid
-sequenceDiagram
 
-Active Opener(Client)->> Passive Opener(Server): SYN, Seq = ISN(c), (options)
-Passive Opener(Server)->> Active Opener(Client): SYN + ACK, Seq = ISN(s), ACK = ISN(c) + 1, (options)
-Active Opener(Client)->> Passive Opener(Server): ACK, Seq = ISN(c) + 1, ACK = ISN(s) + 1, (options)
-Note left of Active Opener(Client): Connection Set-up (3-Way Handshake)
-Active Opener(Client) -->> Passive Opener(Server): [Data Transfer]
-Passive Opener(Server)-->> Active Opener(Client): [Data Transfer]
-Note left of Active Opener(Client): Data Transfer (Established)
-Active Opener(Client)->> Passive Opener(Server): FIN + ACK, Seq = K, ACK = L, (options)
-Passive Opener(Server)->> Active Opener(Client): ACK, Seq = L, ACK = K + 1, (options)
-Passive Opener(Server)->> Active Opener(Client): FIN + ACK, Seq = L, ACK = K + 1, (options)
-Active Opener(Client)->> Passive Opener(Server): ACK, Seq = K, ACK = L + 1, (options)
-Note left of Active Opener(Client): Connection Close (Modified 3-Way Handshake)
-```
+![image](https://user-images.githubusercontent.com/23527702/117527236-70e03900-b005-11eb-8582-ca40857f8e13.png)
 
 위의 <그림 1>에서 `Connection set-up`은 흔히 3Way-Handshacking 이라 부르는 과정으로 클라이언트와 서버 간 세션을 성립하는 단계이다.
 
