@@ -11,14 +11,7 @@ FTP는 TCP 기반으로 만들어져 있으며 기본 동작 모드로 `Active �
 ### Active 모드
 FTP Active 모드의 동작 방식을 그림으로 보면 아래와 같다. 참고로 아래 사용된 명령(Command) 포트와 데이터(Data) 포트는 서버의 설정에서 임의로 수정하여 사용 가능하다.
 
-```mermaid
-sequenceDiagram
-
-FTP Client->> FTP Server: 1. 접근요청 (5150 Port -> 21 Command)
-FTP Server->> FTP Client: 2. 응답 OK (21 Command -> 5150 Port)
-FTP Server->> FTP Client: 3. 데이터채널 연결 요청 (20 Data -> 5151 Port)
-FTP Client->> FTP Server: 4. 응답 OK (5151 Port -> 20 Data)
-```
+![image](https://user-images.githubusercontent.com/23527702/117527415-e00a5d00-b006-11eb-9a99-2818bd4c5f43.png)
 
 1. 클라이언트는 서버의 21번 포트로 접속한 후에 자신이 사용할 두 번째 포트를 서버에 미리 알려준다.
 2.  서버는 클라이언트의 요청에 응답한다. (acks)
@@ -34,14 +27,8 @@ FTP Client->> FTP Server: 4. 응답 OK (5151 Port -> 20 Data)
  </br>
  특히 Passive 모드에서는 데이터 포트 번호를 특별하게 지정하지 않는 경우 1024 ~ 65535 번 중에서 사용 가능한 임의 포트를 사용하게 된다. 포트 번호를 지정할 때는 10001 ~ 10005 번과 같이 범위 지정도 가능하다.
 
-```mermaid
-sequenceDiagram
+![image](https://user-images.githubusercontent.com/23527702/117527420-ec8eb580-b006-11eb-96a5-3ce77d33210d.png)
 
-FTP Client->> FTP Server: 1. 접근요청 - PASV (5150 Port -> 21 Command)
-FTP Server->> FTP Client: 2. 응답 OK - Dataport is 1234 (21 Command -> 5150 Port)
-FTP Client->> FTP Server: 3. 데이터채널 연결 요청 (5151 Port -> 1234 Port)
-FTP Server->> FTP Client: 4. 응답 OK (1234 Port -> 5151 Port)
-```
 1. 클라이언트가 커맨드 포트로 접속을 시도한다. (Passive 모드 연결)
 2. 서버에서는 사용할 두 번째 포트를 클라이언트에게 알려준다.
 3. 클라이언트는 다른 포트를 열어 서버가 알려준 포트로 접속을 시도한다.
