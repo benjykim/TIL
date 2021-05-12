@@ -91,3 +91,7 @@
 | netstat | Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships |  |
 | iotop | simple top-like I/O monitor |  |
 | dstat | versatile tool for generating system resource statistics |  |
+
+---
+
+* 출처 : https://cmdref.net/os/linux/command/index.html#schedule
