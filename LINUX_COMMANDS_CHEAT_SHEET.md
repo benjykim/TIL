@@ -1,4 +1,3 @@
-
 # LINUX (RHEL/CENTOS) 명령어 정리
 ### 목차
 
@@ -21,7 +20,7 @@
 	* [네트워크](#네트워크)
 	* [네트워크 연결 확인](#네트워크-연결-확인)
 	* [DNS](#dns)
-	* [연결(Connection)](#연결(connection))
+	* [연결](#연결)
 	* [HTTP](#http)
 * 하드웨어
 	* [하드웨어](#하드웨어)
@@ -229,7 +228,7 @@
 | whois | client for the whois service | whois google.com |
 | nscd | name service cache daemon | nscd -i hosts ← clear cache |
 
-#### Connection
+#### 연결
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
 | telnet | user interface to the TELNET protocol | telnet IP PORT |
