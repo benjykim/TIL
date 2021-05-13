@@ -1,40 +1,40 @@
+
 # LINUX (RHEL/CENTOS) 명령어 정리
 ### 목차
 
 * 시스템 명령어
-	* 시스템 명령어
-	* 프로세스 관리(Management)
-	* 스케줄
-	* ETC
+	* [시스템 명령어](#시스템-명령어)
+	* [프로세스 관리](#프로세스-관리)
+	* [스케줄](#스케줄)
+	* [시스템 ETC](#시스템-etc)
 * 파일 및 디렉토리 명령어
-	* 파일 명령어
-	* 디렉터리 명령어
-	* 파일 내용에 접근하는 명령어
-	* 검색
+	* [파일 명령어](#파일-명령어)
+	* [디렉터리 명령어](#디렉터리-명령어)
+	* [파일 내용 접근 명령어](#파일-내용-접근-명령어)
+	* [검색](#검색)
 * 유저 관리(Administration)
-	* 유저
-	* 그룹
-	* 파일 권한
-	* ETC
+	* [유저](#유저)
+	* [그룹](#그룹)
+	* [파일 권한](#파일-권한)
+	* [유저 ETC](#유저-etc)
 * 네트워크
-	* 네트워크
-	* 네트워크 연결 확인
-	* DNS
-	* 연결(Connection)
-	* HTTP
-	* SNMP
+	* [네트워크](#네트워크)
+	* [네트워크 연결 확인](#네트워크-연결-확인)
+	* [DNS](#dns)
+	* [연결(Connection)](#연결(connection))
+	* [HTTP](#http)
 * 하드웨어
-	* 하드웨어
-	* 모듈
+	* [하드웨어](#하드웨어)
+	* [모듈](#모듈)
 * 디스크 유틸(Utilities)
-	* HDD
-	* 파티션
-	* Swap
-	* 파일 시스템
-	* 데이터
-	* 마운트
+	* [HDD](#hdd)
+	* [파티션](#파티션)
+	* [Swap](#swap)
+	* [파일 시스템](#파일-시스템)
+	* [데이터](#데이터)
+	* [마운트](#마운트)
 * 성능
-	* 성능
+	* [성능](#)
 
 ---
 
@@ -54,7 +54,7 @@
 | uname | print system information | uname -a ← print all information (=uname --all) <br/> uname -n ← show the system's host name (=uname --nodename) |
 | locale | Get locale-specific information. | locale <br/> locale -a |grep -i ja <- -a : --all-locales |
 
-#### 프로세스 관리(Management)
+#### 프로세스 관리
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
 | ps | report a snapshot of the current processes | ps aux \| grep httpd ← Check httpd process <br/> ps aux \| grep XXX \| awk '{print $2}' \| xargs kill -9 <br/> ps auxwf <br/> ps auxwf \| grep XXX |
@@ -87,7 +87,7 @@
 | watch | execute a program periodically, showing output fullscreen | watch ntpq -p ← By default, the program is run every 2 seconds <br/> watch -n 1 ntpq -p ← 1 seconds interval <br/> -d = highlight the differences between successive updates|
 
 
-#### ETC
+#### 시스템 ETC
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
 | ntpupdate | set the date and time via NTP | ntpupdate -b -u IP <br/> -b = Force the time(step mode) <br/> -u = If you are running ntpd, "-u" must be added |
@@ -124,7 +124,7 @@
 | mkdir | make directories | mkdir -p /tmp/test1/test2/ ← make parent directories as needed <br/> mkdir -m 700 /home/user01/.ssh |
 | rmdir | remove empty directories <br/> If you want to delete directory, you must use “rm -r DIR” | rmdir DIR |
 
-#### 파일 내용에 접근하는  명령어
+#### 파일 내용 접근 명령어
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
 | more | file perusal for crt viewing |  |
@@ -151,132 +151,120 @@
 #### 유저
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| useradd | create a new user or update default new user information |  |
+| useradd | create a new user or update default new user information | useradd -G wheel USER1 |
 | adduser | add a user to the system |  |
-| whoami | print effective userid |  |
-| w | Show who is logged on and what they are doing |  |
-| who | show who is logged on |  |
-| userdel | delete a user account and related files |  |
-| vipw | edit the password, group, shadow-password or shadow-group file |  |
-| passwd | change user password |  |
-| chpasswd | update passwords in batch mode |  |
-| chage | change user password expiry information |  |
-| usermod | modify a user account |  |
-| gpasswd |  |  |
-| chsh | change login shell |  |
-| getent | get entries from Name Service Switch libraries |  |
-| pam_tally2 | The login counter (tallying) module |  |
+| whoami | print effective userid | whoami |
+| w | Show who is logged on and what they are doing | w |
+| who | show who is logged on | who |
+| userdel | delete a user account and related files | userdel -r USER ← -r, --remove = Files in the user's home directory will be removed |
+| vipw | edit the password, group, shadow-password or shadow-group file | vipw ← edit /etc/passwd <br/> vipw -s ← edit /etc/shadow |
+| passwd | change user password | passwd -S USER01 ← check about the status of the password <br/> passwd -l USER01 ← locc the user <br/> passwd -u USER01 ← unlock  |
+| chpasswd | update passwords in batch mode | echo USER01:password \| chpasswd |
+| chage | change user password expiry information | chage -l USER ← check <br/> chage -M 90 USER ← the password expires day set 90 days |
+| usermod | modify a user account | usermod -g GROUP USER <br> usermod -l NEW_USERNAME OLD_USERNAME ← change username <br/> usermod -u UID USER ← change UID|
+| chsh | change login shell | chsh -s /bin/bash ← changing shell |
+| getent | get entries from Name Service Switch libraries | getent passwd ← you can check LDAP users |
+| pam_tally2 | The login counter (tallying) module | pam_tally2 -u USER ← check <br/> pam_tally2 -u USER --reset ← reset |
 
 #### 그룹
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| groups | print the groups a user is in |  |
-| groupadd | create a new group |  |
-| addgroup | add group to the system |  |
-| groupdel | delete a group |  |
-| groupmod | change USER's GID |  |
-| chgrp | change the Group of the file |  |
+| groups | print the groups a user is in | groups <br/> groups USERNAME |
+| groupadd | create a new group | groupadd -g GIP GROUP <br/> groupadd -g 1100 dev |
+| addgroup | add group to the system | addgroup [--gid ID] group |
+| groupdel | delete a group | groupdel GROUP |
+| groupmod | change USER's GID | groupmod -g GID GROUP <br/> groupmod -g 1501 testgroup1 |
+| chgrp | change the Group of the file | chgrp -R GROUP FILE |
 | vigr | edit the password, group, shadow-password or shadow-group file |  |
 
 #### 파일 권한
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| chmod | change file mode bits |  |
-| chown | change file owner and group |  |
+| chmod | change file mode bits | chmod 777 TARGET <br/> chmod u+s PROGRAM ← add SSUID(Set User ID) |
+| chown | change file owner and group | chown USER FILE <br/> chown USER:GROUP FILE |
 
-#### ETC
+#### 유저 ETC
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| finger | user information lookup program |  |
-| su | change user ID or become superuser |  |
-| sudo | execute a command as another user |  |
-| id | print real and effective user and group IDs |  |
-| last | show listing of last logged in users |  |
-| lastlog | reports the most recent login of all users or of a given user |  |
-| umask | set file mode creation mask |  |
+| finger | user information lookup program | finger USER01 |
+| su | change user ID or become superuser | su - ← change root user <br/> sudo su - USER -s /bin/bash |
+| sudo | execute a command as another user | sudo -u USER COMMAND |
+| id | print real and effective user and group IDs | id USERNAME |
+| last | show listing of last logged in users | last -5 ← last 5 logged in users <br/> last USER |
+| lastlog | reports the most recent login of all users or of a given user | lastlog |
+| umask | set file mode creation mask | umask 022 ← default 666-022=644 (rw-r--r--) |
 
 ### 네트워크
 
 #### 네트워크
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| ip | show / manipulate routing, devices, policy routing and tunnels |  |
-| ss | another utility to investigate sockets |  |
-| ifconfig | configure a network interface |  |
-| ifdown | take a network interface down |  |
-| ifup | bring a network interface up |  |
-| route | show / manipulate the IP routing table |  |
-| ethtool | Display or change ethernet card settings |  |
-| mii-tool | view, manipulate media-independent interface status |  |
-| arp | manipulate the system ARP cache |  |
-| nmcli | line tool for controlling NetworkManager |  |
-| tcpdump | dump traffic on a network |  |
+| ip | show / manipulate routing, devices, policy routing and tunnels | ip a(=addr) ← print ip address <br/> ip r(=route) ← show IP routing |
+| ss | another utility to investigate sockets | ss -lt ← list all listening TCP connections <br/> ss -ua ← List all UDP connections <br/> ss -ltp ← process name with listening TCP |
+| ifconfig | configure a network interface | ifconfig ← check ip <br/> ifconfig -a ← -a = display all interfaces <br/> ifconfig eth0 up or d |
+| ifdown | take a network interface down | ifdown eth0 |
+| ifup | bring a network interface up | ifup eth0 |
+| route | show / manipulate the IP routing table | route ← show the IP routing table <br/> rout add-net 192.168.10.0 netmast 255.255.255.0 gw 10.51.0.1 |
+| ethtool | Display or change ethernet card settings | ethtool eth0 <br/> ethtool -s eth0 speed 100 duplex full autoneg off |
+| mii-tool | view, manipulate media-independent interface status | mii-tool eth0 |
+| arp | manipulate the system ARP cache | arp -n <br/> arp -an ← a = show the entries of the specified hosts <br/> arp -d 192.168.xx.xx ← delete arp |
+| tcpdump | dump traffic on a network | tcpdump -n port 80 -i any <br/> tcpdump -n not arp and not port 123 and not port 22 <br/> tcpdump -r /tmp/20210121.pcap ← -r = read packets from file |
 
 #### 네트워크 연결 확인
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
 | ping | send ICMP ECHO_REQUEST to network hosts |  |
-| traceroute | print the route packets trace to network host |  |
-| tracepath | traces path to a network host discovering MTU along this path |  |
-| mtr | a network diagnostic tool |  |
-| nmap | Network exploration tool and security / port scanner |  |
-| nc <br/> netcat | Concatenate and redirect sockets |  |
+| traceroute | print the route packets trace to network host | ping -c 5 -s 1500 192.168.0.1 |
+| tracepath | traces path to a network host discovering MTU along this path | traceroute -n 192.168.0.10 <br/> traceroute -T -p 80 192.168.0.10 ← -T = TCP |
+| nmap | Network exploration tool and security / port scanner | nmap google.com ← check TCP <br/> nmap -Pn -sT -p 22 xx.xx.xx.xx ← check firewall <br/> nmap -p 443 www.google.com |
+| nc <br/> netcat | Concatenate and redirect sockets | nc 192.168.0.10 80 22 ← check TCP <br/> nc -vz 192.168.0.10 1-1023 ← port scan |
 | httping | measure the latency and throughput of a webserver |  |
 
 #### DNS
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| dig | DNS lookup utility |  |
-| nslookup | query Internet name servers interactively |  |
-| host | DNS lookup utility |  |
-| whois | client for the whois service |  |
-| nscd | name service cache daemon |  |
+| dig | DNS lookup utility | dig [@global-server] [domain] [q-type] <br/> dig @8.8.8.8 google.com any |
+| nslookup | query Internet name servers interactively | nslookup -type=any google.com 8.8.8.8  |
+| host | DNS lookup utility | host [-t type] [server] <br/> host -t mx gmail.com 8.8.8.8  |
+| whois | client for the whois service | whois google.com |
+| nscd | name service cache daemon | nscd -i hosts ← clear cache |
 
 #### Connection
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| telnet | user interface to the TELNET protocol |  |
-| ssh | OpenSSH SSH client (remote login program) |  |
-| scp | secure copy (remote file copy program) |  |
-| rsync | a fast, versatile, remote (and local) file-copying tool |  |
-| ssh-keygen | authentication key generation, management and conversion |  |
-| ssh-copy-id | use locally available keys to authorise logins on a remote machine |  |
+| telnet | user interface to the TELNET protocol | telnet IP PORT |
+| ssh | OpenSSH SSH client (remote login program) | ssh USER@IP <br/> ssh xx.xx.xx.xx sudo /sbin/reboot |
+| scp | secure copy (remote file copy program) | scp -rp /tmp/test1/ user1@192.168.0.10:/tmp/test2/ |
+| rsync | a fast, versatile, remote (and local) file-copying tool | rsync -avz --delete /home/user1/ /tmp/user1.bk/ ← rsync “/” is very important. <br/> rsync -e ssh -avz --delete /home/user1/ user2@192.168.0.2:/home/backup/server1/home/user1/|
+| ssh-keygen | authentication key generation, management and conversion | ssh-keygen -t rsa ← generate RSA key pair <br/> ssh-keygen -R HOST  
+← removes all keys belonging to hostname from a known_hosts file |
+| ssh-copy-id | use locally available keys to authorise logins on a remote machine | ssh-copy-id USER@xx.xx.xx.xx |
 
 #### HTTP
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| curl | transfer a URL |  |
-| wget | The non-interactive network downloader | |
-
-
-#### SNMP
-
-| 명령어 | 설명 | 예시 | 
-|---|---|---|
-| snmpwalk | retrieve a subtree of management values using SNMP GETNEXT requests |  |
-| snmpget | communicates with a network entity using SNMP GET requests |  |
-|snmptranslate  | translate MIB OID names between numeric and textual forms |  |
-| snmpnetstat | display networking status and configuration information from a network entity via SNMP |  |
+| curl | transfer a URL | curl -I http://www.example.com/ ← Only Header <br/> curl -i http://www.example.com/ ← Header and Body |
+| wget | The non-interactive network downloader | wget http://google.com/ <br/> wget -e http_proxy=xx.xx.xx.xx:8080 http://example.com/ |
 
 ### 하드웨어
 
 ### 하드웨어
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| dmesg | print or control the kernel ring buffer |  |
-| lsusb | List USB devices |  |
-| lspci | list all PCI devices |  |
-| nproc | print the number of processing units available |  |
-| inxi | Display info about all hardware |  |
-| hwinfo | Display info about all hardware |  |
-| lshw | Display info about all hardware  |  |
-| lscpu | Display all CPU info |  |
+| dmesg | print or control the kernel ring buffer | dmesg |
+| lsusb | List USB devices | lsusb |
+| lspci | list all PCI devices | lspci |
+| nproc | print the number of processing units available | nproc  |
+| inxi | Display info about all hardware | inxi -Fxz |
+| hwinfo | Display info about all hardware | hwinfo --short |
+| lshw | Display info about all hardware  | lshw --short <br/> lshw -C cpu ← display all CPU info <br/> lshw -short -C memory <br/> lshw -short -C disk <br/> lshw -C network |
+| lscpu | Display all CPU info | lscpu |
 
 #### 모듈
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| lsmod | show the status of modules in the Linux Kernel |  |
-| modinfo | show information about a Linux Kernel module |  |
+| lsmod | show the status of modules in the Linux Kernel | lsmod |
+| modinfo | show information about a Linux Kernel module | modinfo MODULENAME <br/> modinfo bnx2 |
 | insmod | insert a module into the Linux Kernel |  |
 | rmmod | remove a module from the Linux Kernel |  |
 | modprobe | add and remove modules from the Linux Kernel |  |
@@ -286,72 +274,68 @@
 ####  HDD
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| du | estimate file space usage |  |
-| fuser | identify processes using files or sockets |  |
+| du | estimate file space usage | du -sh * <br/> du -sh dir/ <br/> du -h --max-depth=1 |
+| fuser | identify processes using files or sockets | fuser -mv /mnt/test ← check <br/> fuser -mvk /mnt/test ← -k = kill processes |
 | chroot | run command or interactive shell with special root directory |  |
 | hdparm | get/set hard disk parameters |  |
 | dumpe2fs | dump ext2/ext3/ext4 filesystem information |  |
 | badblocks | search a device for bad blocks |  | 
+
 #### 파티션
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| df | report file system disk space usage |  |
-| sfdisk | partition table manipulator for Linux |  |
-| fdisk | manipulate disk partition table |  |
+| df | report file system disk space usage | df -h ← -h = print sizes in human readable format <br/> df -BM ← megabyte unite |
+| sfdisk | partition table manipulator for Linux | sfdisk -l ← -l = list the partitions of a device |
+| fdisk | manipulate disk partition table | fdisk -l ← -l = list the partition tables <br/> fdisk -l /dev/sdb |
 | gdisk | Interactive GUID partition table (GPT) manipulator |  |
-| parted | a partition manipulation program |  |
-| lsblk | list block devices |  |
+| parted | a partition manipulation program | parted -l ← check partitions <br/> parted /dev/mapper/mapth0 |
+| lsblk | list block devices | lsblk |
 | e2label | Change the label on an ext2/ext3/ext4 filesystem |  |
 
 #### Swap
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
 | mkswap | set up a Linux swap area |  |
-| swapon | enable devices and files for paging and swapping |  |
-| swapoff | disable devices and files for paging and swapping |  |
+| swapon | enable devices and files for paging and swapping | swapon -s ← check <br/> swapon -a <br/> swapon /dev/xvda3 |
+| swapoff | disable devices and files for paging and swapping | swappoff -a |
 
 #### 파일 시스템
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| mkfs | build a Linux filesystem <br/> #you must umount the device before mkfs) |  |
-| mkfs.xfs <br/> mkfs.ext4 <br/> mkfs.ext3 | #you must umount the device before mkfs. |  |
-| mkfs2fs | create an ext2/ext3/ext4 filesystem <br/> #you must umount the device before mkfs |  |
-| tune2fs | adjust tunable filesystem parameters on ext2/ext3/ext4 filesystems |  |
-| fsck | check and repair a Linux filesystem you must umount the device before fsck. for example single usermode and umount. ('shutdown -r -F now' is force fsck after reboot.) |  |
+| mkfs | build a Linux filesystem <br/> #you must umount the device before mkfs) | mkfs -t xfs /dev/sdb1 <br/> mkfs -t ext4 /dev/sdb2 |
+| mkfs.xfs <br/> mkfs.ext4 <br/> mkfs.ext3 | #you must umount the device before mkfs. | mkfs.ext4 /dev/sdb1 |
+| mkfs2fs | create an ext2/ext3/ext4 filesystem <br/> #you must umount the device before mkfs | mke2fs /dev/sdb1 ← ext2 |
+| tune2fs | adjust tunable filesystem parameters on ext2/ext3/ext4 filesystems | tune2fs -l /dev/mapper/mpath0 ← -l = list the contents of the filesystem superblock <br/> tune2fs -i 0 -c 0 /dev/mapper/mpath0 ← -i = interval, -c = mount count |
+| fsck | check and repair a Linux filesystem you must umount the device before fsck. for example single usermode and umount. ('shutdown -r -F now' is force fsck after reboot.) | fsck -p /dev/sda1 ← -p = automatically repair the file system |
 | fsck.ext4 | check and repair a Linux filesystem |  |
 | e2fsck | check a Linux ext2/ext3/ext4 file system |  |
-| resize2fs |ext2/ext3/ext4 file system resizer |  |
+| resize2fs |ext2/ext3/ext4 file system resizer | resize2fs /dev/testvg/lvol0 |
 
 #### 데이터
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| dd | convert and copy a file |  |
+| dd | convert and copy a file | dd if=/dev/zero of=test_10M bs=1M count=10 |
 | sync | flush file system buffers |  |
 | shred | overwrite a file to hide its contents, and optionally delete it |  |
 
 #### 마운트
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| mount | mount a filesystem |  |
-| umount | unmount file systems |  |
+| mount | mount a filesystem | mount /mnt/test /dev/sda1 <br/> mount -o remount /dev/sda1 |
+| umount | unmount file systems | umount /mnt/test <br/> umount -f /mnt/test ← -f = force unmount(in case of an unreachable NFS system) |
 
 ### 성능
 
 #### 성능
 | 명령어 | 설명 | 예시 | 
 |---|---|---|
-| top | display Linux processes |  |
-| sar | Collect, report, or save system activity information |  |
-| vmstat | Report virtual memory statistics |  |
-| iostat | Report Central Processing Unit (CPU) statistics and input/output statistics for devices and partitions. |  |
-| mpstat | Report processors related statistics. |  |
-| uptime | Tell how long the system has been running |  |
+| top | display Linux processes | top -b -n 4 -d 5 ← interval 5 sec, 4 times |
+| sar | Collect, report, or save system activity information | sar -f /var/log/sa/sa16 <br/> sar (cpu, io) <br/> sar -r (memory) |
+| vmstat | Report virtual memory statistics | vmstat 1 ← interval 1sec (cpu, io, memory, swap) <br/> vmstast 1 5 ← interval 1 sec, 5 times |
+| iostat | Report Central Processing Unit (CPU) statistics and input/output statistics for devices and partitions. | iostat -xtk 1 (cpu, io) ← interval 1 sec |
+| mpstat | Report processors related statistics. | mpstat -P ALL |
 | w | Show who is logged on and what they are doing |  |
-| free | Display amount of free and used memory in the system |  |
-| netstat | Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships |  |
-| iotop | simple top-like I/O monitor |  |
-| dstat | versatile tool for generating system resource statistics |  |
-
----
-
-* 출처 : https://cmdref.net/os/linux/command/index.html#schedule
+| free | Display amount of free and used memory in the system | free -m ← show output in MB |
+| netstat | Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships | netstat -anp ← a = show both listening and non-listening sockets <br/> netstat -rn ← -r = display the kernel routing tables |
+| iotop | simple top-like I/O monitor | iotop -b -n 4 -d 15 ← interval 15 sec, 4 times |
+| dstat | versatile tool for generating system resource statistics | dstat -taf |
