@@ -1,0 +1,63 @@
+
+#### ETC
+| 명령어 | 설명 | 예시 | 
+|---|---|---|
+| finger | user information lookup program | finger USER01 |
+| su | change user ID or become superuser | su - ← change root user <br/> sudo su - USER -s /bin/bash |
+| sudo | execute a command as another user | sudo -u USER COMMAND |
+| id | print real and effective user and group IDs | id USERNAME |
+| last | show listing of last logged in users | last -5 ← last 5 logged in users <br/> last USER |
+| lastlog | reports the most recent login of all users or of a given user | lastlog |
+| umask | set file mode creation mask | umask 022 ← default 666-022=644 (rw-r--r--) |
+
+### 네트워크
+
+#### 네트워크
+| 명령어 | 설명 | 예시 | 
+|---|---|---|
+| ip | show / manipulate routing, devices, policy routing and tunnels | ip a(=addr) ← print ip address <br/> ip r(=route) ← show IP routing |
+| ss | another utility to investigate sockets | ss -lt ← list all listening TCP connections <br/> ss -ua ← List all UDP connections <br/> ss -ltp ← process name with listening TCP |
+| ifconfig | configure a network interface | ifconfig ← check ip <br/> ifconfig -a ← -a = display all interfaces <br/> ifconfig eth0 up or d |
+| ifdown | take a network interface down | ifdown eth0 |
+| ifup | bring a network interface up | ifup eth0 |
+| route | show / manipulate the IP routing table | route ← show the IP routing table <br/> rout add-net 192.168.10.0 netmast 255.255.255.0 gw 10.51.0.1 |
+| ethtool | Display or change ethernet card settings | ethtool eth0 <br/> ethtool -s eth0 speed 100 duplex full autoneg off |
+| mii-tool | view, manipulate media-independent interface status | mii-tool eth0 |
+| arp | manipulate the system ARP cache | arp -n <br/> arp -an ← a = show the entries of the specified hosts <br/> arp -d 192.168.xx.xx ← delete arp |
+| tcpdump | dump traffic on a network | tcpdump -n port 80 -i any <br/> tcpdump -n not arp and not port 123 and not port 22 <br/> tcpdump -r /tmp/20210121.pcap ← -r = read packets from file |
+
+#### 네트워크 연결 확인
+| 명령어 | 설명 | 예시 | 
+|---|---|---|
+| ping | send ICMP ECHO_REQUEST to network hosts |  |
+| traceroute | print the route packets trace to network host | ping -c 5 -s 1500 192.168.0.1 |
+| tracepath | traces path to a network host discovering MTU along this path | traceroute -n 192.168.0.10 <br/> traceroute -T -p 80 192.168.0.10 ← -T = TCP |
+| nmap | Network exploration tool and security / port scanner | nmap google.com ← check TCP <br/> nmap -Pn -sT -p 22 xx.xx.xx.xx ← check firewall <br/> nmap -p 443 www.google.com |
+| nc <br/> netcat | Concatenate and redirect sockets | nc 192.168.0.10 80 22 ← check TCP <br/> nc -vz 192.168.0.10 1-1023 ← port scan |
+| httping | measure the latency and throughput of a webserver |  |
+
+#### DNS
+| 명령어 | 설명 | 예시 | 
+|---|---|---|
+| dig | DNS lookup utility | dig [@global-server] [domain] [q-type] <br/> dig @8.8.8.8 google.com any |
+| nslookup | query Internet name servers interactively | nslookup -type=any google.com 8.8.8.8  |
+| host | DNS lookup utility | host [-t type] [server] <br/> host -t mx gmail.com 8.8.8.8  |
+| whois | client for the whois service | whois google.com |
+| nscd | name service cache daemon | nscd -i hosts ← clear cache |
+
+#### Connection
+| 명령어 | 설명 | 예시 | 
+|---|---|---|
+| telnet | user interface to the TELNET protocol | telnet IP PORT |
+| ssh | OpenSSH SSH client (remote login program) | ssh USER@IP <br/> ssh xx.xx.xx.xx sudo /sbin/reboot |
+| scp | secure copy (remote file copy program) | scp -rp /tmp/test1/ user1@192.168.0.10:/tmp/test2/ |
+| rsync | a fast, versatile, remote (and local) file-copying tool | rsync -avz --delete /home/user1/ /tmp/user1.bk/ ← rsync “/” is very important. <br/> rsync -e ssh -avz --delete /home/user1/ user2@192.168.0.2:/home/backup/server1/home/user1/|
+| ssh-keygen | authentication key generation, management and conversion | ssh-keygen -t rsa ← generate RSA key pair <br/> ssh-keygen -R HOST  
+← removes all keys belonging to hostname from a known_hosts file |
+| ssh-copy-id | use locally available keys to authorise logins on a remote machine | ssh-copy-id USER@xx.xx.xx.xx |
+
+#### HTTP
+| 명령어 | 설명 | 예시 | 
+|---|---|---|
+| curl | transfer a URL | curl -I http://www.example.com/ ← Only Header <br/> curl -i http://www.example.com/ ← Header and Body |
+| wget | The non-interactive network downloader | wget http://google.com/ <br/> wget -e http_proxy=xx.xx.xx.xx:8080 http://example.com/ |
