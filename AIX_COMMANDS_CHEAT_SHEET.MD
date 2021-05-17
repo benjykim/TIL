@@ -21,7 +21,7 @@
 | 구분 | 명령어 |
 |---|---|
 | Server Release Info | `oslevel -r` |
-| Server type | `prtconf | grep -i 'System Model'` |
+| Server type | `prtconf \| grep -i 'System Model'` |
 | Hardware Info | `lscfg -v` / `lscfg -l ent0` / `lscfg -vl fcs0 (find the WWN of HBA adapter)` / `lsdev ` / `lsdev -Cc disk -p scsi0` / `lsslot -c [pci|phb|port]` / `lspath -l hdisk0` |
 | Operating System | `oslevel [-r|-s]`  |
 | Memory | `prtconf -m` / `prtconf | grep -i memory` / `lsattr -El sys0 -a realmem` / `bootinfo -r` |
@@ -29,7 +29,7 @@
 | Disk Drives | `lsdev -Cc disk` / `lsdev -Cc disk -p scsi0 (specific controller)` / `lsdev -Cc disk -S [a|d|s] (available, defined, stopped)` / `lscfg -v -l hdisk0`|
 | Kernel File and assoicated directories | `/unix`  / `/usr/lib/boot` / `/usr/lib/drivers` / `/usr/lib/boot/unix_64`|
 | Kernel 32 or 64 | `prtconf -k` / `bootinfo -K` |
-| Display Firmware | `prtconf | grep -i firmware` / `lscfg -pv` / `invscout` |
+| Display Firmware | `prtconf \| grep -i firmware` / `lscfg -pv` / `invscout` |
 | Display IRQ, IO ports and DMA | `prtconf` |
 | GUI admin tool | `smit` / `smitty` |
 
