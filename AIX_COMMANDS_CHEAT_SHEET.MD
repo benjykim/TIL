@@ -51,7 +51,7 @@
 | Disk Serial Number, type, etc | `lscfg -vl hdisk0` |
 | Disk partitions | `lsvg -l rootvg` / `lchangelv` / `cat /etc/filesystems` |
 | List Raw Partitions | `mklv -y rawVolume vg01 10 ← create a raw volume`  |
-| Bad Blocks | `chlv -b [y|n] <lv> ← Note : enables bad block relocation` |
+| Bad Blocks | `chlv -b [y\|n] <lv> ← Note : enables bad block relocation` |
 | Filesystem commands | `df -k` / `lsfs [<filesystem>]` / `lsfs -q <filesystem> (detailed)` |
 | Filesystem (create) | `crfs -v jfs2 -d data02lv -m /data02 -A yes` / `-v = filesystem type, -d = device of logical volume, -m = mountpoint, -A = mount after restart [yes|no]`|
 | Filesystem (remove) | `rmfs -ri /data02` / `-r = remove the mountpoint, -i = display warning before removing`  |
