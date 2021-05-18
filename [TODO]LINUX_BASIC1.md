@@ -36,11 +36,17 @@
 		    ```
     * 생성한 계정 확인
 	    * `/etc/passwd`에서 ben의 계정 정보 확인 가능
+
+<br/>
+
 * `userdel` : 사용자  계정 삭제
 	* `/etc/passwd` 내의 계정 내용, `/etc/shadow` 내의 패스워드 내용, `/etc/group` 파일 내의 그룹 정보 내용, 그리고 `-r`옵션을 사용하여 계정을 삭제하면  `/var/spool/mail` 디렉터리에 있는 메일 파일과 홈 디렉터리의 내용 모두를 삭제함
 	* `userdel` 명령어를 사용할 땐 `-r` 옵션을 사용했을 때와 사용하지 않았을 때의 차이점을 분명히 알고 있어야 한다.
 		* `userdel ben` : `/etc/passwd`, `/etc/shadow`, `/etc/group` 파일 내에 ben 에 대한 설정 값들은 모두 삭제된다. 그러나 `ls -al /home/ben`을 했을 시 ben의 홈 디렉터리와 메일 파일은 그대로 존재한다.
 		* `userdel -r ben` : ben의 홈 디렉터리와 메일 파일까지 삭제된다.
+
+<br/>
+
 * `usermod` : 사용자 계정 정보 수정
 	* `usermod` 명령어 옵션
 		```
