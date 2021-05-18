@@ -6,7 +6,9 @@
 * `groupadd` : 
 * `groupdel` : 
 * `groupmod` :
+
 <br/> 
+
 * `/etc/passwd` : 
 * `/etc/shadow` : 
 * `/etc/group` : 
@@ -47,7 +49,9 @@ RHEL 7 이상의 경우, `systemctl` 명령어로 관리(등록/삭제)
 * `ifconfig` : 
 * `netstat -an` : 
 * `netstat -rn` : 
+
 <br/>
+
 * `tcpdump -i ens192` : 
 * `tcpdump -i ens192 host 10.0.0.1` : 
 * `tcpdump -i ens192 port 22` : 
