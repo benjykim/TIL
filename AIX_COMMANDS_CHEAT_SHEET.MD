@@ -22,7 +22,7 @@
 | -------------------------------------- | ------------------------------------------------------------ |
 | Server Release Info                    | `oslevel -r`                                                 |
 | Server type                            | `prtconf \| grep -i 'System Model'`                          |
-| Hardware Info                          | `lscfg -v` / `lscfg -l ent0` / `lscfg -vl fcs0 (find the WWN of HBA adapter)` / `lsdev ` / `lsdev -Cc disk -p scsi0` / `lsslot -c [pci|phb|port]` / `lspath -l hdisk0` |
+| Hardware Info                          | `lscfg -v` / `lscfg -l ent0` / `lscfg -vl fcs0 (find the WWN of HBA adapter)` / `lsdev ` / `lsdev -Cc disk -p scsi0` / `lsslot -c [pci\|phb\|port]` / `lspath -l hdisk0` |
 | Operating System                       | `oslevel [-r\|-s]`                                           |
 | Memory                                 | `prtconf -m` / `prtconf \| grep -i memory` / `lsattr -El sys0 -a realmem` / `bootinfo -r` |
 | CPU(type, number, etc)                 | `prtconf \| grep -i processor`                               |
@@ -64,23 +64,3 @@
 | mount/unmount CDROM           | `mount -v cdrfs -r /dev/cd0 /cdrom` / `unmount /cdrom`       |
 | Update /dev directory         | `cfgmgr` / `cfgmgr -l scsi0` / `mkdev`                       |
 | Remove or change a device     | `rmdev -l cd0` / `chdev -l rmt0 -a ret=no`                   |
-
-|      |      |
-|---|---|
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
