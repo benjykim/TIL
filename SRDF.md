@@ -18,4 +18,6 @@
 
 ---
 
-* 출처 : https://www.delltechnologies.com/ko-kr/collaterals/unauth/data-sheets/products/storage/h15228-vmax-af-software-ds.pdf
+* 출처
+  * https://www.delltechnologies.com/ko-kr/collaterals/unauth/data-sheets/products/storage/h15228-vmax-af-software-ds.pdf
+  * (*)https://www.delltechnologies.com/el-gr/collaterals/unauth/technical-guides-support-information/products/storage/docu88904.pdf
