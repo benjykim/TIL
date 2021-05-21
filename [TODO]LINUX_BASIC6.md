@@ -1,6 +1,8 @@
 ### 커널 파라미터 및 TCP 파라미터
 * `cat /proc/sys/net/ipv4/tcp_keepalive_time` : TCP 
 * `vi /etc/security/limits.conf` : nproc, nofile 설정
+	* `nofile` : 해당 도메인(사용자, 그룹)이 오픈할 수 있는 최대 파일 개수
+	* `nproc` : 해당 도메인(사용자, 그룹)의 최대 프로세스 개수
 
 ---
 
