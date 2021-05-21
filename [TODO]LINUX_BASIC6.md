@@ -1,5 +1,5 @@
 ### 커널 파라미터 및 TCP 파라미터
-* `cat /proc/sys/net/ipv4/tcp_keepalive_time` : TCP 
+* `cat /proc/sys/net/ipv4/tcp_keepalive_time` : `keepalive` 소켓의 유지시간. 타이머는 이 시간을 기준으로 동작하며 이 시간이 지나면 `keepalive` 확인 패킷을 보낸다.
 * `vi /etc/security/limits.conf` : nproc, nofile 설정
 	* `nofile` : 해당 도메인(사용자, 그룹)이 오픈할 수 있는 최대 파일 개수
 	* `nproc` : 해당 도메인(사용자, 그룹)의 최대 프로세스 개수
