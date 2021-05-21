@@ -1,6 +1,3 @@
----
-
-
 ### 커널 파라미터 및 TCP 파라미터
 * `cat /proc/sys/net/ipv4/tcp_keepalive_time` : TCP 
 * `vi /etc/security/limits.conf` : nproc, nofile 설정
