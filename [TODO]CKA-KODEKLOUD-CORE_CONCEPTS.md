@@ -63,6 +63,8 @@ $ kubectl edit pods redis
 -> change "image: redis123" to "image: redis"
 ```
 
+---
+
 # KodeKloud-PracticeTest-ReplicaSets
 1. How many PODs exist on the system? In the current(default) namespace.
 ```
